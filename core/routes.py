@@ -2,7 +2,6 @@ from flask import render_template, flash, redirect
 from core.main import app
 from core.forms import LoginForm
 
-print(app)
 @app.route('/')
 @app.route('/index')
 def index():
@@ -27,3 +26,7 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect('/index')
     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/test')
+def test():
+    return app.config['SQLALCHEMY_DATABASE_URI']
