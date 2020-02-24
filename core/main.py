@@ -8,8 +8,5 @@ app = Flask(__name__)
 app.config.update(config)
 
 db.init_app(app)
-with app.app_context():
-    db.drop_all()
-    db.create_all()
 migrate = Migrate(app, db)
 Bootstrap(app)
