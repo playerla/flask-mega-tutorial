@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from flask import url_for
 from werkzeug.security import generate_password_hash, check_password_hash
+from hashlib import md5
 from datetime import datetime
 db = SQLAlchemy()
 
@@ -10,6 +12,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -19,6 +23,10 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def avatar(self, size):
+        digest = md5(self.username.lower().encode('utf-8')).hexdigest()
+        return url_for('static', filename=digest)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
