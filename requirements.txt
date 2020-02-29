@@ -1,5 +1,6 @@
 flask
 flask_login
 flask_bootstrap
-flask_user
 flask_migrate
+flask_mail
+pyjwt

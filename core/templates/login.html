@@ -4,4 +4,9 @@
 {% block blog %}
     <h1>Sign In</h1>
     {{ wtf.quick_form(form) }}
+    <p>
+        Forgot Your Password?
+        <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    </p>
+    
 {% endblock %}

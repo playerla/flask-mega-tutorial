@@ -1,9 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask import url_for
+import jwt
+from time import time
 from werkzeug.security import generate_password_hash, check_password_hash
 from hashlib import md5
 from datetime import datetime
+from config import config
 db = SQLAlchemy()
 
 followers = db.Table('followers',
@@ -56,6 +59,18 @@ class User(db.Model, UserMixin):
                 followers.c.follower_id == self.id)
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
+
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            config['SECRET_KEY']).decode('utf-8')
+
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, config['SECRET_KEY'])['reset_password']
+        except:
+            return
+        return User.query.get(id)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

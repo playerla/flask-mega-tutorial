@@ -1,26 +1,35 @@
 {% extends "bootstrap/base.html" %}
-{% block content %}
-<div>
-  Microblog:
-  <a href="{{ url_for('index') }}">Home</a>
-  <a href="{{ url_for('explore') }}">Explore</a>
-  {% if current_user.is_anonymous %}
-  <a href="{{ url_for('login') }}">Login</a>
-  {% else %}
-  <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-  <a href="{{ url_for('logout') }}">Logout</a>
-  {% endif %}
+<div class="container-fluid">
+  <div class="row content">
+    {% block navbar %}
+    <div class="col-sm-3 sidenav">
+      <h2>Microblog</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        {% if current_user.is_anonymous %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        {% else %}
+        <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endblock %}
+    {% block content %}
+    <div class="col-sm-6">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li class="list-group-item list-group-item-info">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      {% endwith %}
+      {% block blog %}
+      {% endblock %}
+    </div>
+    {% endblock %}
+  </div>
 </div>
-<div class="container">
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
-  {% for message in messages %}
-  <li>{{ message }}</li>
-  {% endfor %}
-</ul>
-</div>
-{% endif %}
-{% endwith %}
-{% block blog %}{% endblock %}
-{% endblock %}

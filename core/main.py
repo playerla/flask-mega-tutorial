@@ -5,6 +5,7 @@ from core.models import db
 from config import config
 import logging
 from logging.handlers import SMTPHandler
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.update(config)
@@ -12,6 +13,7 @@ app.config.update(config)
 db.init_app(app)
 migrate = Migrate(app, db)
 Bootstrap(app)
+mail = Mail(app)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
