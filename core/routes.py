@@ -1,11 +1,17 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
-from core.main import app, db
+from core.main import app, db, babel
 from core.models import User, Post
 from core.forms import EditProfileForm, PostForm, LoginForm, ResetPasswordRequestForm, ResetPasswordForm
 from core.email import send_password_reset_email
+from flask_babel import _
+
+@babel.localeselector
+def get_locale():
+    print(request.accept_languages.best_match(app.config['LANGUAGES']))
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 @app.route('/follow/<username>')
 @login_required
@@ -19,7 +25,7 @@ def follow(username):
         return redirect(url_for('user', username=username))
     current_user.follow(user)
     db.session.commit()
-    flash('You are following {}!'.format(username))
+    flash(_('You are following %(username)s!.', username=username))
     return redirect(url_for('user', username=username))
 
 @app.route('/unfollow/<username>')
@@ -27,7 +33,7 @@ def follow(username):
 def unfollow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
-        flash('User {} not found.'.format(username))
+        flash(_('User {} not found.'.format(username)), username=username)
         return redirect(url_for('index'))
     if user == current_user:
         flash('You cannot unfollow yourself!')
@@ -67,6 +73,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])

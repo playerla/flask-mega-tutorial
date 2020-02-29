@@ -1,0 +1,86 @@
+# French translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-02-29 21:31+0100\n"
+"PO-Revision-Date: 2020-02-29 21:31+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: core/forms.py:7 core/forms.py:13
+msgid "Username"
+msgstr "Utilisateur"
+
+#: core/forms.py:8 core/forms.py:27
+msgid "Password"
+msgstr "Mot de passe"
+
+#: core/forms.py:9
+msgid "Remember Me"
+msgstr "Rester connecté"
+
+#: core/forms.py:10
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: core/forms.py:14
+msgid "About me"
+msgstr "A propos"
+
+#: core/forms.py:15 core/forms.py:20
+msgid "Submit"
+msgstr "Envoyer"
+
+#: core/forms.py:18
+msgid "Say something"
+msgstr "Ecrivez quelque chose"
+
+#: core/forms.py:23
+msgid "Email"
+msgstr "mail"
+
+#: core/forms.py:24 core/forms.py:30
+msgid "Request Password Reset"
+msgstr "Réinitialiser votre mot de passe"
+
+#: core/forms.py:29
+msgid "Repeat Password"
+msgstr "Vérification du mot de passe"
+
+#: core/forms.py:29
+msgid "password"
+msgstr "mot de passe"
+
+#: core/login.py:8
+msgid "Please log in to access this page."
+msgstr "Veuillez vous connecter pour accéder à cette page"
+
+#: core/routes.py:27
+#, python-format
+msgid "You are following %(username)s!."
+msgstr "You suivez %(username)s!."
+
+#: core/routes.py:35
+msgid "User {} not found."
+msgstr "Utilisateur {} introuvable"
+
+#: core/templates/404.html:4
+msgid "File Not Found"
+msgstr "Page introuvable"
+
+#: core/templates/_post.html:14
+#, python-format
+msgid "%(username)s said %(when)s"
+msgstr "%(username)s - %(when)s"
+

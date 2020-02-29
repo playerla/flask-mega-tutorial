@@ -7,6 +7,7 @@ import logging
 from logging.handlers import SMTPHandler
 from flask_mail import Mail
 from flask_moment import Moment
+from flask_babel import Babel
 
 app = Flask(__name__)
 app.config.update(config)
@@ -16,6 +17,7 @@ migrate = Migrate(app, db)
 Bootstrap(app)
 mail = Mail(app)
 moment = Moment(app)
+babel = Babel(app)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
