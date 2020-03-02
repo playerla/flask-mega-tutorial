@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-29 21:31+0100\n"
+"POT-Creation-Date: 2020-03-02 22:55+0100\n"
 "PO-Revision-Date: 2020-02-29 21:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -66,14 +66,18 @@ msgstr "mot de passe"
 msgid "Please log in to access this page."
 msgstr "Veuillez vous connecter pour accéder à cette page"
 
-#: core/routes.py:27
+#: core/routes.py:37
 #, python-format
 msgid "You are following %(username)s!."
 msgstr "You suivez %(username)s!."
 
-#: core/routes.py:35
+#: core/routes.py:45
 msgid "User {} not found."
 msgstr "Utilisateur {} introuvable"
+
+#: core/translate.py:8
+msgid "Error: the translation service is not configured."
+msgstr "Erreur: le service de traduction n'est pas configuré"
 
 #: core/templates/404.html:4
 msgid "File Not Found"
@@ -83,4 +87,12 @@ msgstr "Page introuvable"
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s - %(when)s"
+
+#: core/templates/_post.html:25
+msgid "Translate"
+msgstr "Traduire"
+
+#: core/templates/base.html:51
+msgid "Error: Could not contact server."
+msgstr "Erreur: impossible de contacter le serveur"
 
