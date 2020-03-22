@@ -2,6 +2,8 @@ https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 Currently working on part 16
 
+Python 3.8
+
 # Testing mail
 
 ```sh
@@ -17,4 +19,10 @@ pybabel init -i messages.pot -d core/translations -l fr
 pybabel compile -d core/translations
 # ... Modify python code
 pybabel update -i messages.pot -d core/translations
+```
+
+# Switch Python version for Windows (livereload support 3.7)
+
+```ps
+$env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 ```
