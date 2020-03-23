@@ -5,10 +5,10 @@ from flask_babel import _
 from guess_language import guess_language
 from core.main import app, db, babel
 from core.models import User, Post
-from core.forms import EditProfileForm, PostForm
+from core.forms import EditProfileForm, PostForm, SearchForm
 from core.translate import translate
 from core.errors.handlers import error_blueprint
-from core.auth.route import auth_blueprint
+from core.auth.routes import auth_blueprint
 
 app.register_blueprint(error_blueprint)
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
@@ -75,6 +75,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        g.search_form = SearchForm()
     g.locale = str(get_locale())
 
 @app.route('/', methods=['GET', 'POST'])
@@ -118,3 +119,17 @@ def explore():
     return render_template("index.html", title='Explore', posts=posts.items,
                             next_url=next_url, prev_url=prev_url)
 
+@app.route('/search')
+@login_required
+def search():
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(g.search_form.q.data, page,
+                               app.config['POSTS_PER_PAGE'])
+    next_url = url_for('search', q=g.search_form.q.data, page=page + 1) \
+        if total > page * app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('search', q=g.search_form.q.data, page=page - 1) \
+        if page > 1 else None
+    return render_template('search.html', title=_('Search'), posts=posts,
+                           next_url=next_url, prev_url=prev_url)

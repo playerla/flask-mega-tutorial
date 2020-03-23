@@ -9,5 +9,6 @@ config = {
     'ADMINS':['your-email@example.com'],
     'POSTS_PER_PAGE':3,
     'LANGUAGES':['en', 'fr'],
-    'BABEL_TRANSLATION_DIRECTORIES':'./translations/'
+    'BABEL_TRANSLATION_DIRECTORIES':'./translations/',
+    'ELASTICSEARCH_URL': "http://localhost:9200"
 }

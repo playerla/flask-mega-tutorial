@@ -1,6 +1,6 @@
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
-Currently working on part 16
+Currently working on part 17-18-19
 
 Python 3.8
 
@@ -25,4 +25,12 @@ pybabel update -i messages.pot -d core/translations
 
 ```ps
 $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
+```
+
+# Fix elastic on WSL read only mode
+
+https://stackoverflow.com/a/56143760
+
+```bash
+curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": false}'
 ```
