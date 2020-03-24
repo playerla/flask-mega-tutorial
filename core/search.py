@@ -2,7 +2,8 @@ from flask import current_app
 from elasticsearch import Elasticsearch
 
 def CoreSearch(app):
-    return Elasticsearch([app.config['ELASTICSEARCH_URL']])
+    if 'ELASTICSEARCH_URL' in app.config and app.config['ELASTICSEARCH_URL']:
+        return Elasticsearch([app.config['ELASTICSEARCH_URL']])
 
 def add_to_index(index, model):
     if not current_app.elasticsearch:

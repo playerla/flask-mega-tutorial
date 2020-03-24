@@ -34,3 +34,45 @@ https://stackoverflow.com/a/56143760
 ```bash
 curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": false}'
 ```
+
+# VSCode Dev Environment Extension
+
+- Python
+- Gitlens
+- Git Pull Requests
+- Brower Preview
+- Remote SSH/WSL
+- SQlite
+- SFTP
+- reStructuredText
+
+Not really usefull:
+- Vagrant
+- Visual Studio IntelliCode
+
+# Hardened deployement on a VM
+
+Deployed on /opt with user vagrant
+
+```bash
+chown root:root /opt -R
+find /opt -type d -exec setfacl -m "g:ubuntu:r-x" {} +
+find /opt -type d -exec setfacl -m "g:vagrant:rwx" {} +
+find /opt -type f -exec setfacl -m "g:vagrant:rwx" {} +
+find /opt -type f -exec setfacl -m "g:ubuntu:r--" {} +
+```
+Check :
+- user 'ubuntu' not in sudoers
+- ubuntu permissions:executable+x, database+w and its folder +w
+```bash
+chown root:ubuntu /opt/microblog.db
+chmod g+w /opt/microblog.db
+chown root:ubuntu /opt/venv/bin/*
+chmod g+x /opt/venv/bin/*
+chown root:ubuntu /opt
+chmod g+w /opt
+```
+
+# SMTP configuration
+
+https://app.sendgrid.com/ with api key for local postfix relay

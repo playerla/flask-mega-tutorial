@@ -3,9 +3,12 @@ flask_login
 flask_bootstrap
 flask_migrate
 flask_mail
+flask_wtf
 pyjwt
 flask-moment
 flask-babel
 guess_language-spirit
 google-cloud-translate
 elasticsearch
+python-dotenv
+gunicorn
