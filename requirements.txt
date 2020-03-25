@@ -12,3 +12,4 @@ google-cloud-translate
 elasticsearch
 python-dotenv
 gunicorn
+psycopg2
