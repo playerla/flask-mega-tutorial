@@ -84,12 +84,14 @@ heroku cli use git config to identify remote app
 git remote add heroku git@heroku.com:microblog-flask-lopi.git
 ```
 
+
 ## Google cloud
 
 ```ps
-$GOOGLE_CREDENTIALS= "GOOGLE_CREDENTIALS='"; gc .\google_credentials.json | % { $GOOGLE_CREDENTIALS += $_ }; $GOOGLE_CREDENTIALS+="'"
-$GOOGLE_CREDENTIALS= ""; gc .\google_credentials.json | % { $GOOGLE_CREDENTIALS += $_ };
+$GOOGLE_CREDENTIALS= ""; gc .\google-credentials.json | % { $GOOGLE_CREDENTIALS += $_ };
 $env:EDITOR="code -w"
 heroku config:edit GOOGLE_CREDENTIALS
-heroku buildpacks:add --index 1 https://github.com/elishaterada/heroku-google-application-credentials-buildpack
+heroku buildpacks:add --index 1 https://github.com/playerla/heroku-google-application-credentials-buildpack.git
 ```
+
+NB: a .profile is executed at startup for manipulating the environment
