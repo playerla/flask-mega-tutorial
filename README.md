@@ -76,3 +76,10 @@ chmod g+w /opt
 # SMTP configuration
 
 https://app.sendgrid.com/ with api key for local postfix relay
+
+# Heroku configuration
+
+heroku cli use git config to identify remote app
+```bash
+git remote add heroku git@heroku.com:microblog-flask-lopi.git
+```
