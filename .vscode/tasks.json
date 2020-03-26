@@ -1,0 +1,24 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Project Shell",
+            "type": "shell",
+            "command": "heroku run bash"
+        },
+        {
+            "label": "Connect to heroku postgres",
+            "type": "shell",
+            "command": "heroku pg:psql",
+            "problemMatcher": []
+        },
+        {
+            "label": "log heroku postgres",
+            "type": "shell",
+            "command": "heroku logs --tail",
+            "problemMatcher": []
+        }
+    ]
+}
