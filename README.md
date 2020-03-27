@@ -27,13 +27,19 @@ pybabel update -i messages.pot -d core/translations
 $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 ```
 
-# Fix elastic on WSL read only mode
+# Elasticsearch
+
+## Fix elastic on WSL read only mode
 
 https://stackoverflow.com/a/56143760
 
 ```bash
 curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": false}'
 ```
+
+## HEroku searchly create index
+
+http://www.searchly.com/docs/python
 
 # VSCode Dev Environment Extension
 

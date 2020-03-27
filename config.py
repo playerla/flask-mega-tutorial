@@ -13,5 +13,5 @@ config = {
     'POSTS_PER_PAGE':3,
     'LANGUAGES':['en', 'fr'],
     'BABEL_TRANSLATION_DIRECTORIES':'./translations/',
-    'ELASTICSEARCH_URL': None
+    'ELASTICSEARCH_URL': os.environ.get('ELASTICSEARCH_URL') or "localhost:9200"
 }
