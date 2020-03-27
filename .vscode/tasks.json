@@ -6,19 +6,41 @@
         {
             "label": "Run Project Shell",
             "type": "shell",
-            "command": "heroku run bash"
+            "command": "${input:shell}",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Docker in VirtualBox Shell",
+            "type": "shell",
+            "command": "ssh '${config:project-ssh_args_docker_in_virtualbox}'",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Heroku Shell",
+            "type": "shell",
+            "command": "heroku run bash",
+            "problemMatcher": []
         },
         {
             "label": "Connect to heroku postgres",
             "type": "shell",
-            "command": "heroku pg:psql",
-            "problemMatcher": []
+            "command": "heroku pg:psql"
         },
         {
             "label": "log heroku postgres",
             "type": "shell",
-            "command": "heroku logs --tail",
-            "problemMatcher": []
+            "command": "heroku logs --tail"
+        }
+    ],
+    "inputs": [
+        {
+          "type": "pickString",
+          "id": "shell",
+          "description": "Project shells",
+          "options": [
+            "heroku 'run bash'",
+            "ssh '-i .vagrant\\machines\\microblog-docker\\virtualbox\\private_key -o StrictHostKeyChecking=no -t vagrant@192.168.33.11 sudo -i'"
+          ]
         }
     ]
 }

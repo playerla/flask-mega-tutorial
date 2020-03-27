@@ -1,16 +1,25 @@
+# Microblog
+
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 Currently working on part 17-18-19
 
-Python 3.8
+## DEV Environment
+- Windows 10, VirtualBox, WSL.
+- VSCode
+- Python 3.8
 
-# Testing mail
+### SMTP configuration
+
+https://app.sendgrid.com/ with api key for local postfix relay
+
+#### Testing with local smtp
 
 ```sh
 python -m smtpd -n -c DebuggingServer localhost:25
 ```
 
-# Translating
+### Translating
 
 ```sh
 pybabel extract -F babel.cfg -k _l -o messages.pot .
@@ -21,44 +30,33 @@ pybabel compile -d core/translations
 pybabel update -i messages.pot -d core/translations
 ```
 
-# Switch Python version for Windows (livereload support 3.7)
+### Switch Python version for Windows (livereload support 3.7)
 
 ```ps
 $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 ```
 
-# Elasticsearch
+### Elasticsearch on WSL
 
-## Fix elastic on WSL read only mode
-
-https://stackoverflow.com/a/56143760
+Fix elastic on WSL read only mode : https://stackoverflow.com/a/56143760
 
 ```bash
 curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": false}'
 ```
 
-## HEroku searchly create index
-
-http://www.searchly.com/docs/python
-
-# VSCode Dev Environment Extension
+### VSCode Extension
 
 - Python
 - Gitlens
-- Git Pull Requests
 - Brower Preview
 - Remote SSH/WSL
 - SQlite
 - SFTP
 - reStructuredText
 
-Not really usefull:
-- Vagrant
-- Visual Studio IntelliCode
+## Hardened deployement with Vagrant-VirtualBox
 
-# Hardened deployement on a VM
-
-Deployed on /opt with user vagrant
+Deployed on /opt with user vagrant (SFTP extension is used here)
 
 ```bash
 chown root:root /opt -R
@@ -79,19 +77,21 @@ chown root:ubuntu /opt
 chmod g+w /opt
 ```
 
-# SMTP configuration
+## Heroku configuration
 
-https://app.sendgrid.com/ with api key for local postfix relay
-
-# Heroku configuration
-
-heroku cli use git config to identify remote app
+heroku cli use git config to identify remote app, set :
 ```bash
 git remote add heroku git@heroku.com:microblog-flask-lopi.git
 ```
+or on each command you will be asked for app-name : `heroku command -a app-name`
 
+### Heroku searchly : create index
 
-## Google cloud
+http://www.searchly.com/docs/python
+
+### Google cloud
+
+Setup .\google-credentials.json content in $GOOGLE_CREDENTIALS
 
 ```ps
 $GOOGLE_CREDENTIALS= ""; gc .\google-credentials.json | % { $GOOGLE_CREDENTIALS += $_ };
