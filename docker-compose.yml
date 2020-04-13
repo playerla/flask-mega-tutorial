@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: playerla/flaskmegaturorial:latest
+    build: .
+    ports:
+      - "5000:5000"
+    environment: 
+      DATABASE_URL: mysql+pymysql://root:q22gRE@db/microblog
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: q22gRE
+      MYSQL_DATABASE: microblog
+  migration:
+    image: playerla/flaskmegaturorial:latest
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["apk add bash && ./wait-for-it/wait-for-it.sh db:3306 -t 30 -- flask db upgrade"]
+    depends_on:
+      - db
+    environment: 
+      DATABASE_URL: mysql+pymysql://root:q22gRE@db/microblog

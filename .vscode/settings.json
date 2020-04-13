@@ -3,5 +3,5 @@
     "**/*.pyc": {"when": "$(basename).py"},
     "**/__pycache__": true,
     },
-    "project-ssh_args_docker_in_virtualbox": "'-i .vagrant\\machines\\microblog-docker\\virtualbox\\private_key -o StrictHostKeyChecking=no -t vagrant@192.168.33.11 sudo -i'"
+    "project-ssh_args_docker_machine": "default"
 }

@@ -12,13 +12,7 @@
         {
             "label": "Run Docker in VirtualBox Shell",
             "type": "shell",
-            "command": "ssh '${config:project-ssh_args_docker_in_virtualbox}'",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Heroku Shell",
-            "type": "shell",
-            "command": "heroku run bash",
+            "command": "docker-machine 'ssh' '${config:project-ssh_args_docker_machine}'",
             "problemMatcher": []
         },
         {
@@ -27,9 +21,30 @@
             "command": "heroku pg:psql"
         },
         {
-            "label": "log heroku postgres",
+            "label": "Log heroku postgres",
             "type": "shell",
             "command": "heroku logs --tail"
+        },
+        {
+            "label": "docker attach flask-mega-tutorial_web_1",
+            "type": "shell",
+            "command": "docker attach flask-mega-tutorial_web_1",
+            "problemMatcher": []
+        },
+        {
+            "label": "docker logs migration",
+            "type": "shell",
+            "command": "docker logs -tf flask-mega-tutorial_migration_1",
+            "problemMatcher": []
+        },
+        {
+            "label": "Start docker-machine",
+            "type": "shell",
+            "command": "docker-machine start",
+            "runOptions": { 
+                "runOn": "folderOpen"
+            },
+            "problemMatcher": []
         }
     ],
     "inputs": [
@@ -38,6 +53,7 @@
           "id": "shell",
           "description": "Project shells",
           "options": [
+            "docker 'exec -it flask-mega-tutorial_web_1 /bin/sh'",
             "heroku 'run bash'",
             "ssh '-i .vagrant\\machines\\microblog-docker\\virtualbox\\private_key -o StrictHostKeyChecking=no -t vagrant@192.168.33.11 sudo -i'"
           ]

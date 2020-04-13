@@ -101,3 +101,23 @@ heroku buildpacks:add --index 1 https://github.com/playerla/heroku-google-applic
 ```
 
 NB: a .profile is executed at startup for manipulating the environment
+
+## Local Docker environment
+
+I use Docker toolbox ("Native" Linux container on WSL 2 is still preview at the time of writing).
+
+### Database migration utility
+
+https://stackoverflow.com/a/44283611
+https://gist.githubusercontent.com/skeep/10c30807e68c2dd7da820bd5cf7afe92/raw/c8c0a8f630f11def57a272eebeed8de630aaf806/docker-compose.yml
+https://github.com/vishnubob/wait-for-it.git
+
+### Removing database volume
+
+Usefull on a permission denied, wrong former password:
+```ps
+docker-compose stop db
+docker-compose rm -v db
+docker-compose up -d --build
+docker run --network flask-mega-tutorial_default -it --rm mysql mysql -hdb -uroot -p
+```
