@@ -14,3 +14,4 @@ python-dotenv
 gunicorn
 pymysql
 cryptography
+psycopg2-binary
