@@ -5,6 +5,7 @@ https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 Currently working on part 17-18-19
 
 ## DEV Environment
+
 - Windows 10, VirtualBox, WSL.
 - VSCode
 - Python 3.8
@@ -114,7 +115,7 @@ https://github.com/vishnubob/wait-for-it.git
 
 ### Removing database volume
 
-Usefull on a permission denied, wrong former password:
+Usefull on a permission denied, wrong former password stored on volume:
 ```ps
 docker-compose stop db
 docker-compose rm -v db

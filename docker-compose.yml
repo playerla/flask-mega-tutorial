@@ -8,17 +8,28 @@ services:
     ports:
       - "5000:5000"
     environment: 
+      ELASTICSEARCH_URL: http://elasticsearch:9200
       DATABASE_URL: mysql+pymysql://root:q22gRE@db/microblog
   db:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: q22gRE
       MYSQL_DATABASE: microblog
+    volumes:
+      - mysql-flask-mega-tuto:/var/lib/mysql
   migration:
     image: playerla/flaskmegaturorial:latest
     entrypoint: ["/bin/sh", "-c"]
-    command: ["apk add bash && ./wait-for-it/wait-for-it.sh db:3306 -t 30 -- flask db upgrade"]
+    # After db upgrade, invoke flask shell to check everything is ok and call all init() functions like creating default users in database
+    command: ["apk add bash && ./wait-for-it/wait-for-it.sh db:3306 -t 45 -- flask db upgrade ; flask shell"]
     depends_on:
       - db
     environment: 
       DATABASE_URL: mysql+pymysql://root:q22gRE@db/microblog
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+volumes:
+  mysql-flask-mega-tuto:
