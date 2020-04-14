@@ -105,7 +105,7 @@ NB: a .profile is executed at startup for manipulating the environment
 
 ## Local Docker environment
 
-I use Docker toolbox ("Native" Linux container on WSL 2 is still preview at the time of writing).
+I use Docker toolbox ("Native" Linux container on WSL 2 is still preview at the time of writing). See .env file for password and secret configuration
 
 ### Database migration utility
 
@@ -121,4 +121,12 @@ docker-compose stop db
 docker-compose rm -v db
 docker-compose up -d --build
 docker run --network flask-mega-tutorial_default -it --rm mysql mysql -hdb -uroot -p
+```
+
+### Reindexing all posts in search engine
+
+Elastic volume has not been configured in this docker-compose file (not persistent)
+
+```ps
+docker-compose exec web flask index update
 ```

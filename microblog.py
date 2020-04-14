@@ -6,3 +6,13 @@ from core.models import db, User, Post
 @app.shell_context_processor
 def make_shell_context():
     return {'db': db, 'User': User, 'Post': Post}
+
+@app.cli.group()
+def index():
+    """Search index commands."""
+    pass
+
+@index.command()
+def update():
+    """Reindex Posts."""
+    Post.reindex()

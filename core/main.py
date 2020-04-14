@@ -14,6 +14,8 @@ app.elasticsearch = CoreSearch(app)
 
 db.init_app(app)
 migrate = Migrate(app, db)
+
+### Set up a non scalable and non users persistent application for demonstration purpose
 # Sign up is disable so populate with some users
 with app.app_context():
     try:
