@@ -26,6 +26,8 @@ RUN pip install -r requirements.txt
 COPY core core
 COPY migrations migrations 
 COPY microblog.py config.py .flaskenv ./
+# For Development
+COPY watch.py watch.py
 
 ENTRYPOINT ["gunicorn"]
 CMD [ "-b", ":5000", "--access-logfile", "-", "--error-logfile", "-", "microblog:app" ]

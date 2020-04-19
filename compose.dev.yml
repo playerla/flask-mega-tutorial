@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+  web:
+    entrypoint: ["/bin/sh", "-c"]
+    command: [ "pip install livereload && python watch.py" ]
+    volumes:
+      - "./core:/opt/microblog/core"

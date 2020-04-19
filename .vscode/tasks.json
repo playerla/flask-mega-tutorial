@@ -38,6 +38,12 @@
             "problemMatcher": []
         },
         {
+            "label": "Watch",
+            "type": "shell",
+            "command": "docker-compose -f docker-compose.yml -f compose.dev.yml up -d --build",
+            "problemMatcher": []
+        },
+        {
             "label": "Start docker-machine",
             "type": "shell",
             "command": "docker-machine start",
