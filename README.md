@@ -2,7 +2,7 @@
 
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
-Currently working on part 17-18-19
+Currently working on part 19
 
 ## DEV Environment
 
