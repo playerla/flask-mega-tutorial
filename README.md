@@ -47,13 +47,25 @@ curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_setti
 
 ### VSCode Extension
 
+#### Used
+
 - Python
+- Jinja
 - Gitlens
 - Brower Preview
 - Remote SSH/WSL
 - SQlite
 - SFTP
+- Docker
 - reStructuredText
+
+#### Should take a look: 
+
+- AREPL for python
+- Better TOML
+- TODO Highlight
+- Bracket pair colorizer 2
+- Toogle
 
 ## Hardened deployement with Vagrant-VirtualBox
 
@@ -130,3 +142,12 @@ Elastic volume has not been configured in this docker-compose file (not persiste
 ```ps
 docker-compose exec web flask index update
 ```
+
+## Reference and links
+
+### Articles on python and docker
+https://pythonspeed.com 
+### Migration in real life
+https://benchling.engineering/move-fast-and-migrate-things-how-we-automated-migrations-in-postgres-d60aba0fc3d4
+### Introduction to Docker-compose
+https://gabrieltanner.org/blog/docker-compose
