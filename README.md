@@ -36,6 +36,11 @@ pybabel update -i messages.pot -d core/translations
 ```ps
 $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 ```
+Last version of livereload was broken I made a fix (a revert see [4fce73](https://github.com/playerla/python-livereload/commit/4fce737d541478c51424387d7432db0a0c0577ac))
+Livereload work with `<script>` tag injection in `<head>`: 
+```py
+    return render_template_string("<html><head>world!</head><html>")
+```
 
 ### Elasticsearch on WSL
 
