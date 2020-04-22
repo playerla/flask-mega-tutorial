@@ -7,7 +7,7 @@ RUN apk add linux-headers libffi-dev libressl-dev
 RUN pip install --user google-cloud-translate cryptography
 
 ### Create runtime image
-FROM python:3.8-alpine AS runtime-image
+FROM python:3.8-alpine AS base-image
 RUN apk add libffi libressl
 COPY --from=compile-image /root/.local /root/.local
 
@@ -23,9 +23,18 @@ RUN chmod +x wait-for-it/wait-for-it.sh
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-COPY core core
 COPY migrations migrations 
 COPY microblog.py config.py .flaskenv ./
 
+FROM base-image as runtime-image
+COPY core core
+
 ENTRYPOINT ["gunicorn"]
 CMD [ "-b", ":5000", "--access-logfile", "-", "--error-logfile", "-", "microblog:app" ]
+
+FROM base-image as dev-image
+
+# For Development some addition
+COPY watch.py watch.py
+COPY playerla_livereload-2.6.1-py2.py3-none-any.whl ./
+RUN pip install playerla_livereload-2.6.1-py2.py3-none-any.whl

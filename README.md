@@ -2,7 +2,7 @@
 
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
-Currently working on part 17-18-19
+Currently working on part 21
 
 ## DEV Environment
 
@@ -36,6 +36,11 @@ pybabel update -i messages.pot -d core/translations
 ```ps
 $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 ```
+Last version of livereload was broken I made a fix (a revert see [4fce73](https://github.com/playerla/python-livereload/commit/4fce737d541478c51424387d7432db0a0c0577ac))
+Livereload work with `<script>` tag injection in `<head>`: 
+```py
+    return render_template_string("<html><head>world!</head><html>")
+```
 
 ### Elasticsearch on WSL
 
@@ -47,13 +52,25 @@ curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_setti
 
 ### VSCode Extension
 
+#### Used
+
 - Python
+- Jinja
 - Gitlens
 - Brower Preview
 - Remote SSH/WSL
 - SQlite
 - SFTP
+- Docker
 - reStructuredText
+
+#### Should take a look: 
+
+- AREPL for python
+- Better TOML
+- TODO Highlight
+- Bracket pair colorizer 2
+- Toogle
 
 ## Hardened deployement with Vagrant-VirtualBox
 
@@ -130,3 +147,12 @@ Elastic volume has not been configured in this docker-compose file (not persiste
 ```ps
 docker-compose exec web flask index update
 ```
+
+## Reference and links
+
+### Articles on python and docker
+https://pythonspeed.com 
+### Migration in real life
+https://benchling.engineering/move-fast-and-migrate-things-how-we-automated-migrations-in-postgres-d60aba0fc3d4
+### Introduction to Docker-compose
+https://gabrieltanner.org/blog/docker-compose

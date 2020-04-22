@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  web:
+    build:
+      context: .
+      target: dev-image
+    entrypoint: ["python"]
+    command: [ "watch.py" ]
+    volumes:
+      - "./core:/opt/microblog/core"

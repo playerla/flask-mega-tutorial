@@ -38,9 +38,15 @@
             "problemMatcher": []
         },
         {
-            "label": "Start docker-machine",
+            "label": "Watch",
             "type": "shell",
-            "command": "docker-machine start",
+            "command": "docker-compose -f docker-compose.yml -f compose.dev.yml up -d --build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Startup",
+            "type": "shell",
+            "command": "docker-machine start ; docker-compose -f docker-compose.yml -f compose.dev.yml up -d --build",
             "runOptions": { 
                 "runOn": "folderOpen"
             },
