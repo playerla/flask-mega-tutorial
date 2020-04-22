@@ -1,11 +1,12 @@
 from core.main import app
 from core import routes
 from core import login
-from core.models import db, User, Post
+from core.models import db, User, Post, Message, Notification
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'User': User, 'Post': Post}
+    return {'db': db, 'User': User, 'Post': Post, 'Message': Message,
+        'Notification': Notification}
 
 @app.cli.group()
 def index():

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-02 22:55+0100\n"
+"POT-Creation-Date: 2020-04-22 23:20+0200\n"
 "PO-Revision-Date: 2020-02-29 21:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,81 +18,129 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: core/forms.py:7 core/forms.py:13
+#: core/auth/forms.py:17 core/forms.py:8
 msgid "Username"
 msgstr "Utilisateur"
 
-#: core/forms.py:8 core/forms.py:27
-msgid "Password"
-msgstr "Mot de passe"
-
 #: core/forms.py:9
-msgid "Remember Me"
-msgstr "Rester connecté"
-
-#: core/forms.py:10
-msgid "Sign In"
-msgstr "Se connecter"
-
-#: core/forms.py:14
 msgid "About me"
 msgstr "A propos"
 
-#: core/forms.py:15 core/forms.py:20
+#: core/forms.py:10 core/forms.py:15 core/forms.py:30
 msgid "Submit"
 msgstr "Envoyer"
 
-#: core/forms.py:18
+#: core/forms.py:13
 msgid "Say something"
 msgstr "Ecrivez quelque chose"
 
-#: core/forms.py:23
-msgid "Email"
-msgstr "mail"
+#: core/forms.py:18 core/routes.py:134
+msgid "Search"
+msgstr "Chercher"
 
-#: core/forms.py:24 core/forms.py:30
-msgid "Request Password Reset"
-msgstr "Réinitialiser votre mot de passe"
-
-#: core/forms.py:29
-msgid "Repeat Password"
-msgstr "Vérification du mot de passe"
-
-#: core/forms.py:29
-msgid "password"
-msgstr "mot de passe"
+#: core/forms.py:28
+msgid "Message"
+msgstr "Message"
 
 #: core/login.py:8
 msgid "Please log in to access this page."
 msgstr "Veuillez vous connecter pour accéder à cette page"
 
-#: core/routes.py:37
+#: core/routes.py:39
 #, python-format
 msgid "You are following %(username)s!."
-msgstr "You suivez %(username)s!."
+msgstr "Vous suivez %(username)s!."
 
-#: core/routes.py:45
+#: core/routes.py:47
 msgid "User {} not found."
 msgstr "Utilisateur {} introuvable"
 
-#: core/translate.py:8
+#: core/routes.py:153
+msgid "Your message has been sent."
+msgstr "Votre message n'a pas été envoyé"
+
+#: core/routes.py:155
+msgid "Send Message"
+msgstr "Envoyer un message"
+
+#: core/translate.py:9
 msgid "Error: the translation service is not configured."
 msgstr "Erreur: le service de traduction n'est pas configuré"
 
-#: core/templates/404.html:4
-msgid "File Not Found"
-msgstr "Page introuvable"
+#: core/auth/forms.py:7
+msgid "Email"
+msgstr "mail"
 
-#: core/templates/_post.html:14
+#: core/auth/forms.py:8 core/auth/forms.py:14
+msgid "Request Password Reset"
+msgstr "Réinitialiser votre mot de passe"
+
+#: core/auth/forms.py:11 core/auth/forms.py:18
+msgid "Password"
+msgstr "Mot de passe"
+
+#: core/auth/forms.py:13
+msgid "Repeat Password"
+msgstr "Vérification du mot de passe"
+
+#: core/auth/forms.py:19
+msgid "Remember Me"
+msgstr "Rester connecté"
+
+#: core/auth/forms.py:20
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: core/templates/_post.html:16
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s - %(when)s"
 
-#: core/templates/_post.html:25
+#: core/templates/_post.html:27
 msgid "Translate"
 msgstr "Traduire"
 
-#: core/templates/base.html:51
+#: core/templates/base.html:13 core/templates/messages.html:4
+msgid "Messages"
+msgstr "Messages"
+
+#: core/templates/base.html:61
 msgid "Error: Could not contact server."
 msgstr "Erreur: impossible de contacter le serveur"
+
+#: core/templates/messages.html:12
+msgid "Newer messages"
+msgstr "Nouveaux messages"
+
+#: core/templates/messages.html:17
+msgid "Older messages"
+msgstr "Anciens messages"
+
+#: core/templates/search.html:4
+msgid "Search Results"
+msgstr "Résultats de recherche"
+
+#: core/templates/search.html:13
+msgid "Previous results"
+msgstr "Résultats précedents"
+
+#: core/templates/search.html:18
+msgid "Next results"
+msgstr "Résultats suivant"
+
+#: core/templates/send_message.html:5
+#, python-format
+msgid "Send Message to %(recipient)s"
+msgstr "Envoyer un message à %(recipient)s"
+
+#: core/templates/user.html:9
+msgid "Send private message"
+msgstr "Envoyer un message privé"
+
+#: core/templates/errors/404.html:4
+msgid "File Not Found"
+msgstr "Page introuvable"
+
+#~ msgid "password"
+#~ msgstr "mot de passe"
 
