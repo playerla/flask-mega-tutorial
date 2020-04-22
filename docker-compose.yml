@@ -1,7 +1,6 @@
 version: '3.4'
 services:
   web:
-    image: playerla/flaskmegaturorial:latest
     build:
       context: .
       target: runtime-image
@@ -18,7 +17,9 @@ services:
     volumes:
       - mysql-flask-mega-tuto:/var/lib/mysql
   migration:
-    image: playerla/flaskmegaturorial:latest
+    build:
+      context: .
+      target: runtime-image
     entrypoint: ["/bin/sh", "-c"]
     # After db upgrade, invoke flask shell to check everything is ok and call all init() functions like creating default users in database
     command: ["apk add bash && ./wait-for-it/wait-for-it.sh db:3306 -t 45 -- flask db upgrade ; flask shell"]
