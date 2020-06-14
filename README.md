@@ -27,8 +27,12 @@ pybabel extract -F babel.cfg -k _l -o messages.pot .
 pybabel init -i messages.pot -d core/translations -l fr
 # ... Edit messages.po
 pybabel compile -d core/translations
-# ... Modify python code
+```
+```sh
+# ... Modify python code and extract new pending translations
+pybabel extract -F babel.cfg -k _l -o messages.pot .
 pybabel update -i messages.pot -d core/translations
+pybabel compile -d core/translations
 ```
 
 ### Switch Python version for Windows (livereload support 3.7)
@@ -146,6 +150,12 @@ Elastic volume has not been configured in this docker-compose file (not persiste
 
 ```ps
 docker-compose exec web flask index update
+```
+
+### Get mails
+
+```ps
+dc logs -f smtp
 ```
 
 ## Reference and links

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-22 23:20+0200\n"
+"POT-Creation-Date: 2020-06-14 15:50+0200\n"
 "PO-Revision-Date: 2020-02-29 21:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -55,13 +55,21 @@ msgstr "Vous suivez %(username)s!."
 msgid "User {} not found."
 msgstr "Utilisateur {} introuvable"
 
-#: core/routes.py:153
+#: core/routes.py:154
 msgid "Your message has been sent."
 msgstr "Votre message n'a pas été envoyé"
 
-#: core/routes.py:155
+#: core/routes.py:156
 msgid "Send Message"
 msgstr "Envoyer un message"
+
+#: core/routes.py:192
+msgid "An export task is currently in progress"
+msgstr "Une tache d'export est en cours"
+
+#: core/routes.py:194
+msgid "Exporting posts..."
+msgstr "Export des messages en cours..."
 
 #: core/translate.py:9
 msgid "Error: the translation service is not configured."
@@ -104,7 +112,7 @@ msgstr "Traduire"
 msgid "Messages"
 msgstr "Messages"
 
-#: core/templates/base.html:61
+#: core/templates/base.html:79
 msgid "Error: Could not contact server."
 msgstr "Erreur: impossible de contacter le serveur"
 
@@ -133,7 +141,11 @@ msgstr "Résultats suivant"
 msgid "Send Message to %(recipient)s"
 msgstr "Envoyer un message à %(recipient)s"
 
-#: core/templates/user.html:9
+#: core/templates/user.html:12
+msgid "Export your posts"
+msgstr "Exporter vos messages"
+
+#: core/templates/user_popup.html:18
 msgid "Send private message"
 msgstr "Envoyer un message privé"
 

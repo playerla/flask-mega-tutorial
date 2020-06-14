@@ -9,6 +9,18 @@ services:
     environment: 
       ELASTICSEARCH_URL: http://elasticsearch:9200
       DATABASE_URL: mysql+pymysql://root:$MYSQL_PW@db/microblog
+      REDIS_URL: redis://redis
+      MAIL_SERVER: smtp
+  web_worker:
+    build:
+      context: .
+      target: runtime-image
+    entrypoint: ["rq", "worker", "microblog-tasks", "-u", "redis://redis"]
+    environment: 
+      DATABASE_URL: mysql+pymysql://root:$MYSQL_PW@db/microblog
+      MAIL_SERVER: smtp
+    depends_on:
+      - redis
   db:
     image: mysql
     environment:
@@ -32,5 +44,9 @@ services:
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
+  redis:
+    image: redis:6.0.5-alpine
+  smtp:
+    image: python:3.8-alpine
 volumes:
   mysql-flask-mega-tuto:
