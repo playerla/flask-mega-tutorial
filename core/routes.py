@@ -9,7 +9,9 @@ from core.forms import EditProfileForm, PostForm, SearchForm, MessageForm
 from core.translate import translate
 from core.errors.handlers import error_blueprint
 from core.auth.routes import auth_blueprint
+from core.api.users import bp as api_bp
 
+app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(error_blueprint)
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 

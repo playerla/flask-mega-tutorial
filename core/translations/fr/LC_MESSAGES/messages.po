@@ -57,7 +57,7 @@ msgstr "Utilisateur {} introuvable"
 
 #: core/routes.py:154
 msgid "Your message has been sent."
-msgstr "Votre message n'a pas été envoyé"
+msgstr "Votre message a bien été envoyé"
 
 #: core/routes.py:156
 msgid "Send Message"
