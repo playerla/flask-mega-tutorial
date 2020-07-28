@@ -9,7 +9,9 @@ from core.forms import EditProfileForm, PostForm, SearchForm, MessageForm
 from core.translate import translate
 from core.errors.handlers import error_blueprint
 from core.auth.routes import auth_blueprint
+from core.api.users import bp as api_bp
 
+app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(error_blueprint)
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
@@ -184,3 +186,13 @@ def notifications():
         'data': n.get_data(),
         'timestamp': n.timestamp
     } for n in notifications])
+
+@app.route('/export_posts')
+@login_required
+def export_posts():
+    if current_user.get_task_in_progress('export_posts'):
+        flash(_('An export task is currently in progress'))
+    else:
+        current_user.launch_task('export_posts', _('Exporting posts...'))
+        db.session.commit()
+    return redirect(url_for('user', username=current_user.username))

@@ -7,13 +7,17 @@ from flask_babel import Babel
 from core.models import db, User
 from core.auth.email import init_auth
 from core.search import CoreSearch
+from redis import Redis
+import rq
 
 app = Flask(__name__)
 app.config.update(config)
 app.elasticsearch = CoreSearch(app)
+app.redis = Redis.from_url(app.config['REDIS_URL'])
+app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
 
 db.init_app(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, compare_type=True)
 
 ### Set up a non scalable and non users persistent application for demonstration purpose
 # Sign up is disable so populate with some users

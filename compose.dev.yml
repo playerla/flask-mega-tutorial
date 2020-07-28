@@ -8,3 +8,16 @@ services:
     command: [ "watch.py" ]
     volumes:
       - "./core:/opt/microblog/core"
+  web_worker:
+    build:
+      context: .
+      target: dev-image
+    volumes:
+      - "./core:/opt/microblog/core"
+  db:
+    ports:
+      - "3306:3306"
+  smtp:
+    entrypoint: ["python", "-m", "smtpd", "-n", "-c", "DebuggingServer", "0.0.0.0:25"]
+    environment:
+      PYTHONUNBUFFERED: "True"
