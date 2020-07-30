@@ -111,6 +111,12 @@ or on each command you will be asked for app-name : `heroku command -a app-name`
 
 http://www.searchly.com/docs/python
 
+### Using PosgreSQL
+
+```sql
+select * from public.user;
+```
+
 ### Google cloud
 
 Setup .\google-credentials.json content in $GOOGLE_CREDENTIALS
