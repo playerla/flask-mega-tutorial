@@ -24,7 +24,7 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY migrations migrations 
-COPY microblog.py config.py .flaskenv ./
+COPY microblog.py config.py .flaskenv .env ./
 
 FROM base-image as runtime-image
 COPY core core

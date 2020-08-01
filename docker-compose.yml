@@ -11,6 +11,8 @@ services:
       DATABASE_URL: mysql+pymysql://root:$MYSQL_PW@db/microblog
       REDIS_URL: redis://redis
       MAIL_SERVER: smtp
+    volumes:
+      - "./google-credentials.json:/opt/microblog/google-credentials.json"
   web_worker:
     build:
       context: .
