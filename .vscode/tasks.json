@@ -10,12 +10,6 @@
             "problemMatcher": []
         },
         {
-            "label": "Run Docker in VirtualBox Shell",
-            "type": "shell",
-            "command": "docker-machine 'ssh' '${config:project-ssh_args_docker_machine}'",
-            "problemMatcher": []
-        },
-        {
             "label": "Connect to heroku postgres",
             "type": "shell",
             "command": "heroku pg:psql"
@@ -46,7 +40,7 @@
         {
             "label": "Startup",
             "type": "shell",
-            "command": "docker-machine start ; docker-compose -f docker-compose.yml -f compose.dev.yml up -d --build",
+            "command": "docker-compose -f docker-compose.yml -f compose.dev.yml up -d --build",
             "runOptions": { 
                 "runOn": "folderOpen"
             },
