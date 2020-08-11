@@ -1,6 +1,7 @@
 version: '3.4'
 services:
   web:
+    image: playerla/flaskmegaturorial:1.0
     build:
       context: .
       target: runtime-image
@@ -14,6 +15,7 @@ services:
     volumes:
       - "./google-credentials.json:/opt/microblog/google-credentials.json"
   web_worker:
+    image: playerla/flaskmegaturorial:1.0
     build:
       context: .
       target: runtime-image
@@ -31,6 +33,7 @@ services:
     volumes:
       - mysql-flask-mega-tuto:/var/lib/mysql
   migration:
+    image: playerla/flaskmegaturorial:1.0
     build:
       context: .
       target: runtime-image

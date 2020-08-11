@@ -4,6 +4,55 @@ https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 Full tutorial with minor adaptation done in some monthes
 
+## Local Docker environment
+
+### Test with downloding 1.0 (no build)
+
+```sh
+docker pull playerla/flaskmegaturorial:1.0
+docker-compose -f docker-compose.yml up --no-build
+docker-compose exec web flask shell
+User.query.filter(User.username=='user').first().set_password(YOUR_PASSWORD_HERE)
+db.session.commit()
+exit()
+```
+
+I used Docker toolbox ("Native" Linux container on WSL 2 was still preview). See .env file for password and secret configuration.
+Now using Docker for windows with WSL2 backend.
+
+### Database migration utility
+
+https://stackoverflow.com/a/44283611
+https://gist.githubusercontent.com/skeep/10c30807e68c2dd7da820bd5cf7afe92/raw/c8c0a8f630f11def57a272eebeed8de630aaf806/docker-compose.yml
+https://github.com/vishnubob/wait-for-it.git
+
+### Removing database volume
+
+Usefull on a permission denied, wrong former password stored on volume:
+```ps
+docker-compose stop db
+docker-compose rm -v db
+docker-compose up -d --build
+# Run tool in a client container
+docker run --network flask-mega-tuto_default -it --rm mysql mysql -hdb -uroot -p
+# or attach in db container
+docker-compose exec db mysql -hdb -p
+```
+
+### Reindexing all posts in search engine
+
+Elastic volume has not been configured in this docker-compose file (not persistent)
+
+```ps
+docker-compose exec web flask index update
+```
+
+### Get mails
+
+```ps
+docker-compose logs -f smtp
+```
+
 ## DEV Environment
 
 - Windows 10, VirtualBox, WSL.
@@ -43,7 +92,7 @@ $env:Path = "$env:LOCALAPPDATA\Programs\Python\Python37\;$env:Path"
 Last version of livereload was broken I made a fix (a revert see [4fce73](https://github.com/playerla/python-livereload/commit/4fce737d541478c51424387d7432db0a0c0577ac))
 Livereload work with `<script>` tag injection in `<head>`: 
 ```py
-    return render_template_string("<html><head>world!</head><html>")
+    return render_template_string("<html><head>world!<!-- script is injected here--></head><html>")
 ```
 
 ### Elasticsearch on WSL
@@ -76,7 +125,7 @@ curl -XPUT -H "Content-Type: application/json" http://localhost:9200/_all/_setti
 - Bracket pair colorizer 2
 - Toogle
 
-## Hardened deployement with Vagrant-VirtualBox
+## Hardened deployement tested on the Vagrant-VirtualBox (manual install of the application)
 
 Deployed on /opt with user vagrant (SFTP extension is used here)
 
@@ -107,6 +156,13 @@ git remote add heroku git@heroku.com:microblog-flask-lopi.git
 ```
 or on each command you will be asked for app-name : `heroku command -a app-name`
 
+### Addons
+
+- Redis
+- SendGrid
+- Postgres
+- SearchBox Elasticsearch
+
 ### Heroku searchly : create index
 
 http://www.searchly.com/docs/python
@@ -123,40 +179,6 @@ heroku buildpacks:add --index 1 https://github.com/playerla/heroku-google-applic
 ```
 
 NB: a .profile is executed at startup for manipulating the environment
-
-## Local Docker environment
-
-I use Docker toolbox ("Native" Linux container on WSL 2 is still preview at the time of writing). See .env file for password and secret configuration
-
-### Database migration utility
-
-https://stackoverflow.com/a/44283611
-https://gist.githubusercontent.com/skeep/10c30807e68c2dd7da820bd5cf7afe92/raw/c8c0a8f630f11def57a272eebeed8de630aaf806/docker-compose.yml
-https://github.com/vishnubob/wait-for-it.git
-
-### Removing database volume
-
-Usefull on a permission denied, wrong former password stored on volume:
-```ps
-docker-compose stop db
-docker-compose rm -v db
-docker-compose up -d --build
-docker run --network flask-mega-tutorial_default -it --rm mysql mysql -hdb -uroot -p
-```
-
-### Reindexing all posts in search engine
-
-Elastic volume has not been configured in this docker-compose file (not persistent)
-
-```ps
-docker-compose exec web flask index update
-```
-
-### Get mails
-
-```ps
-dc logs -f smtp
-```
 
 ## Reference and links
 
