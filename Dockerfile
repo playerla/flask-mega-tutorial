@@ -36,5 +36,4 @@ FROM base-image as dev-image
 
 # For Development some addition
 COPY watch.py watch.py
-COPY playerla_livereload-2.6.1-py2.py3-none-any.whl ./
-RUN pip install playerla_livereload-2.6.1-py2.py3-none-any.whl
+RUN pip install livereload
